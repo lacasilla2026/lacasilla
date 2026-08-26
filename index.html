@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Cà Silla Production House</title>
+    <style>
+        /* CSS Reset & Cơ bản */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Bật tính năng cuộn mượt mà khi click vào menu */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            /* NỀN CHÍNH CHO TOÀN BỘ TRANG (Trừ phần Trang Chủ) */
+            background-color: #73daff;
+            background-image: url('POSTER.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            color: #00046c;
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Khối sáng mờ tạo hiệu ứng kính chất lỏng */
+        .blob { position: fixed; filter: blur(80px); z-index: -1; border-radius: 50%; animation: float 10s infinite ease-in-out alternate; }
+        .blob-1 { width: 400px; height: 400px; background: rgba(28, 255, 176, 0.347); top: -100px; left: -100px; }
+        .blob-2 { width: 500px; height: 500px; background: rgba(29, 33, 136, 0.345); bottom: -50px; right: -100px; animation-delay: -5s; }
+        .blob-3 { width: 350px; height: 350px; background: rgba(70, 198, 244, 0.3); top: 40%; left: 30%; animation-duration: 15s; }
+        @keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(40px) scale(1.1); } }
+
+        /* Tiện ích Glassmorphism trong suốt */
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.132) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.151);
+            border-top: 1px solid rgba(255, 255, 255, 0.5);
+            border-left: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+        }
+
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ================= HEADER ================= */
+        header {
+            position: fixed; top: 15px; left: 20px; right: 20px; margin: 0 auto;
+            max-width: 1160px; z-index: 1000; padding: 10px 30px; display: flex;
+            justify-content: space-between; align-items: center;
+        }
+        .logo img { height: 50px; object-fit: contain; }
+        nav ul { list-style: none; display: flex; gap: 25px; }
+        nav ul li a { text-decoration: none; color: #1d2088; font-weight: 800; font-size: 16px; transition: color 0.3s; }
+        nav ul li a:hover { color: #ffffff; text-shadow: 0 0 5px rgba(29,32,136, 0.5); }
+        .mobile-menu-btn { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+        .mobile-menu-btn span { display: block; width: 25px; height: 3px; background-color: #1d2088; border-radius: 3px; transition: 0.3s; }
+
+        /* ================= TRANG CHỦ (CHỈ HIỂN THỊ VIDEO TRÀN MÀN HÌNH) ================= */
+        #home {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Cao bằng 100% màn hình hiển thị */
+            overflow: hidden; /* Ẩn đi những phần video bị lố ra ngoài */
+            border-bottom: 2px solid rgba(255,255,255,0.3);
+        }
+
+        /* Định dạng cho thẻ video để lấp đầy màn hình */
+        .bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Tính năng quan trọng: Phóng to video vừa khít mọi tỷ lệ màn hình */
+            z-index: -1;
+        }
+
+        /* CÁC SECTION CHUNG */
+        section { padding: 120px 0 60px; scroll-margin-top: 20px; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 25px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 10px rgba(255,255,255,0.9); }
+        
+        /* Tiêu đề phân nhánh */
+        .sub-category { text-align: center; font-size: 1.8rem; color: #1d2088; margin: 50px 0 25px; text-transform: uppercase; font-weight: 800; position: relative; }
+        .sub-category::after { content: ''; display: block; width: 60px; height: 4px; background: #ffffff; margin: 10px auto 0; border-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
+
+        /* ================= VỀ CHÚNG TÔI ================= */
+        .about-content { padding: 50px; text-align: center; font-size: 1.2rem; }
+        .about-content h3 { font-size: 1.8rem; margin-bottom: 15px; color: #1d2088; }
+        .affiliation { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 40px; padding-top: 25px; border-top: 1px dashed rgba(29, 32, 136, 0.3); }
+        .affiliation p { font-size: 1.1rem; font-weight: 600; color: #1d2088; margin-bottom: 0; }
+        .affiliation img { height: 60px; object-fit: contain; }
+        .assoc-name { font-weight: 800; font-size: 1.1rem; color: #1d2088; text-align: left; line-height: 1.3; }
+
+        /* ================= THÀNH VIÊN ================= */
+        .members-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .member-card { padding: 25px; text-align: center; transition: transform 0.3s ease; }
+        .member-card:hover { transform: translateY(-10px); }
+        .member-img-wrapper { position: relative; width: 150px; height: 150px; margin: 0 auto 20px; border-radius: 50%; overflow: hidden; border: 4px solid rgba(255, 255, 255, 0.5); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .member-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .member-info-hover { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(29, 32, 136, 0.75); backdrop-filter: blur(4px); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; padding: 10px; }
+        .member-img-wrapper:hover .member-info-hover { opacity: 1; }
+        .member-info-hover h4 { font-size: 1.1rem; margin-bottom: 5px; }
+        .member-info-hover p { font-size: 0.85rem; margin: 2px 0; }
+        .member-role { font-size: 1.3rem; font-weight: bold; color: #1d2088; }
+
+        /* ================= NHIỆM VỤ & HÌNH ẢNH ================= */
+        .missions-content { padding: 40px; display: flex; flex-direction: column; gap: 20px; }
+        .mission-item { background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.3); padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 15px; font-weight: 500; }
+        .mission-item span { font-size: 1.5rem; color: #1d2088; }
+
+        .masonry-gallery { column-count: 3; column-gap: 20px; margin-top: 20px; }
+        .masonry-item { break-inside: avoid; margin-bottom: 20px; border-radius: 15px; overflow: hidden; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 8px; border: 1px solid rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.5); border-left: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .masonry-item:hover { transform: scale(1.02); box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.15); }
+        .masonry-item img { width: 100%; display: block; border-radius: 10px; }
+
+        /* ================= LIÊN HỆ (FOOTER) ================= */
+        footer { padding: 40px 0; margin-top: 50px; }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px; text-align: center; }
+        .contact-item h4 { font-size: 1.2rem; margin-bottom: 10px; color: #1d2088; }
+        .contact-item p, .contact-item a { color: #1d2088; font-weight: 500; text-decoration: none; font-size: 1rem; }
+        .contact-item a:hover { color: #ffffff; text-shadow: 0 0 5px rgba(29,32,136, 0.5); }
+        .copyright { text-align: center; padding-top: 30px; font-size: 0.9rem; font-weight: 600; color: #1d2088; }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 992px) { .masonry-gallery { column-count: 2; } }
+        @media (max-width: 768px) {
+            .section-title { font-size: 2rem; }
+            .about-content, .missions-content { padding: 25px 15px; }
+            .affiliation { flex-direction: column; text-align: center; gap: 10px; }
+            .assoc-name { text-align: center; }
+            .mobile-menu-btn { display: flex; }
+            nav ul { position: absolute; top: 75px; right: 0; width: 100%; background: linear-gradient(135deg, rgba(255, 255, 255, 0.132) 0%, rgba(255, 255, 255, 0.05) 100%); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.151); border-top: 1px solid rgba(255, 255, 255, 0.5); border-left: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; flex-direction: column; align-items: center; padding: 20px 0; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; }
+            nav ul.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        }
+        @media (max-width: 576px) { .masonry-gallery { column-count: 1; } }
+    </style>
+</head>
+<body>
+
+    <!-- Các khối mờ nền -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <!-- Thanh Menu Header Cố Định -->
+    <header class="glass-panel">
+        <div class="logo">
+            <a href="#home">
+                <img src="LOGO LACA SILLA.png" alt="La Cà Silla Logo">
+            </a>
+        </div>
+        <div class="mobile-menu-btn" id="mobile-menu">
+            <span></span><span></span><span></span>
+        </div>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="#about">Về Chúng Tôi</a></li>
+                <li><a href="#members">Thành Viên</a></li>
+                <li><a href="#missions">Nhiệm Vụ</a></li>
+                <li><a href="#contact">Liên Hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- TRANG CHỦ (Background Video) -->
+    <div id="home">
+        <!-- Thay ten-video-cua-ban.mp4 bằng file video thực tế của bạn -->
+        <video class="bg-video" autoplay loop muted playsinline>
+            <source src="0826.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- VỀ CHÚNG TÔI -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Về Chúng Tôi</h2>
+            <div class="glass-panel about-content">
+                <h3>Thành lập năm 2026</h3>
+                <p><strong>La Cà Silla Production House</strong> là đội ngũ truyền thông sáng tạo trực thuộc <strong>Ban Chi Hội Sinh Viên Việt Nam tại trường Đại Học Silla, Hàn Quốc</strong>. Với sức trẻ, sự năng động và góc nhìn hiện đại, chúng tôi ra đời nhằm mang đến những ấn phẩm truyền thông chất lượng, kết nối cộng đồng du học sinh và lưu giữ những khoảnh khắc đẹp nhất dưới mái trường Silla.</p>
+                
+                <div class="affiliation">
+                    <p>Thành viên trực thuộc:</p>
+                    <img src="ASLOGO_1.png" alt="Logo Ban Chi Hội">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THÀNH VIÊN -->
+    <section id="members">
+        <div class="container">
+            <h2 class="section-title">Thành Viên Nòng Cốt</h2>
+            
+            <!-- Content (4 Người) -->
+            <h3 class="sub-category">Content</h3>
+            <div class="members-grid">
+                <div class="member-card glass-panel">
+                    <div class="member-img-wrapper"><img src="HAI.jpg" alt="Member"><div class="member-info-hover"><h4>THANH HẢI</h4><p>Năm sinh: 2000</p></div></div>
+                    <div class="member-role">Content Writer</div>
+                </div>
+                <div class="member-card glass-panel">
+                    <div class="member-img-wrapper"><img src="NGAN.jpg" alt="Member"><div class="member-info-hover"><h4>KIM NGÂN</h4><p>Nghệ danh: YUJIN</p><p>Năm sinh: 2005</p></div></div>
+                    <div class="member-role">Content Writer</div>
+                </div>
+                <div class="member-card glass-panel">
+                    <div class="member-img-wrapper"><img src="TOAN.jpg" alt="Member"><div class="member-info-hover"><h4>XUÂN TOÀN</h4><p>Nghệ danh: JACKY</p><p>Năm sinh: 2002</p></div></div>
+                    <div class="member-role">Content Writer</div>
+                </div>
+                <div class="member-card glass-panel">
+                    <div class="member-img-wrapper"><img src="LINH.jpg" alt="Member"><div class="member-info-hover"><h4>THÙY LINH</h4><p>Năm sinh: 2005</p></div></div>
+                    <div class="member-role">Content Writer</div>
+                </div>
+                <div class="member-card glass-panel">
+                    <div class="member-img-wrapper"><img src="LOGO LACA SILLA.png" alt="Member"><div class="member-info-hover"><h4>HUỲNH NGỌC</h4><p>Năm sinh: 2005</p></div></div>
+                    <div class="member-role">Content Writer</div>
+                </div>
+                <div class="member-card glass-panel">
+                    <div class="member-img-wrapper"><img src="LOGO LACA SILLA.png" alt="Member"><div class="member-info-hover"><h4>DIỄM KIỀU</h4><p>Năm sinh: 2005</p></div></div>
+                    <div class="member-role">Content Writer</div>
+                </div>
+                <div class="member-card glass-panel">
+                    <div class="member-img-wrapper"><img src="LOGO LACA SILLA.png" alt="Member"><div class="member-info-hover"><h4>KIM XUYẾN</h4><p>Năm sinh: 2003</p></div></div>
+                    <div class="member-role">Content Writer</div>
+                </div>
+            </div>
+
+            <!-- Media (4 Người) -->
+            <h3 class="sub-category">Media</h3>
+            <div class="members-grid">
+                <div class="member-card glass-panel">
+                    <div class="member-img-wrapper"><img src="TOAN.jpg" alt="Member"><div class="member-info-hover"><h4>XUÂN TOÀN</h4><p>Nghệ danh: JACKY</p><p>Năm sinh: 2002</p></div></div>
+                    <div class="member-role">Cameraman | Video Editor</div>
+                </div>
+                <div class="member-card glass-panel">
+                    <div class="member-img-wrapper"><img src="TRANG.jpg" alt="Member"><div class="member-info-hover"><h4>HUYỀN TRANG</h4><p>Năm sinh: 2004</p></div></div>
+                    <div class="member-role">Video Editor</div>
+                </div>
+            </div>
+
+            <!-- Graphic Design (1 Người) -->
+            <h3 class="sub-category">Graphic Design</h3>
+            <div class="members-grid">
+                <div class="member-card glass-panel">
+                    <div class="member-img-wrapper"><img src="TOAN.jpg" alt="Member"><div class="member-info-hover"><h4>XUÂN TOÀN</h4><p>Nghệ danh: JACKY</p><p>Năm sinh: 2002</p></div></div>
+                    <div class="member-role">Designer</div>
+                </div>
+                <div class="member-card glass-panel">
+                    <div class="member-img-wrapper"><img src="NGAN.jpg" alt="Member"><div class="member-info-hover"><h4>KIM NGÂN</h4><p>Nghệ danh: YUJIN</p><p>Năm sinh: 2005</p></div></div>
+                    <div class="member-role">Designer</div>
+                </div>
+            </div>
+
+            <!-- VJ (1 Người) -->
+            <h3 class="sub-category">VJ</h3>
+            <div class="members-grid">
+                <div class="member-card glass-panel">
+                    <div class="member-img-wrapper"><img src="TRANG.jpg" alt="Member"><div class="member-info-hover"><h4>HUYỀN TRANG</h4><p>Năm sinh: 2004</p></div></div>
+                    <div class="member-role">Host / VJ</div>
+                </div>
+                <div class="member-card glass-panel">
+                    <div class="member-img-wrapper"><img src="HAI.jpg" alt="Member"><div class="member-info-hover"><h4>THANH HẢI</h4><p>Năm sinh: 2000</p></div></div>
+                    <div class="member-role">Host / VJ</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- NHIỆM VỤ & HÌNH ẢNH HOẠT ĐỘNG -->
+    <section id="missions">
+        <div class="container">
+            <h2 class="section-title">Nhiệm Vụ Của Chúng Tôi</h2>
+            
+            <div class="glass-panel missions-content">
+                <div class="mission-item"><span>📰</span><p><strong>Cập nhật tin tức nhanh chóng:</strong> Đưa tin về các hoạt động, sự kiện và thông báo quan trọng từ trường Silla University và Hội sinh viên.</p></div>
+                <div class="mission-item"><span>📸</span><p><strong>Truyền thông Hình ảnh & Media:</strong> Quay dựng video, ghi lại những thước phim và hình ảnh lưu giữ thanh xuân của du học sinh.</p></div>
+                <div class="mission-item"><span>🎨</span><p><strong>Thiết kế ấn phẩm sáng tạo:</strong> Phụ trách toàn bộ hình ảnh, poster, banner phong cách chuyên nghiệp cho các chiến dịch và sự kiện.</p></div>
+                <div class="mission-item"><span>🎙️</span><p><strong>Sáng tạo nội dung (Content & VJ):</strong> Xây dựng kịch bản, dẫn chương trình, phỏng vấn và tạo ra các nội dung giải trí, tương tác sinh động.</p></div>
+            </div>
+
+            <h3 class="sub-category">Hình Ảnh Hoạt Động</h3>
+            
+            <div class="masonry-gallery">
+                <div class="masonry-item"><img src="_MG_3436.JPG" alt="Hoạt động 1"></div>
+                <div class="masonry-item"><img src="_MG_3590.JPG" alt="Hoạt động 2"></div>
+                <div class="masonry-item"><img src="_MG_3472.JPG" alt="Hoạt động 3"></div>
+                <div class="masonry-item"><img src="DEMOlacateam.png" alt="Hoạt động 4"></div>
+                <div class="masonry-item"><img src="IMG_3406.JPG" alt="Hoạt động 5"></div>
+                <div class="masonry-item"><img src="_MG_3585.JPG" alt="Hoạt động 6"></div>
+                <div class="masonry-item"><img src="_MG_3383.JPG" alt="Hoạt động 7"></div>
+                <div class="masonry-item"><img src="2026+totnghiep[.png" alt="Hoạt động 8"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIÊN HỆ -->
+    <footer id="contact">
+        <div class="container">
+            <h2 class="section-title">Liên Hệ Với Chúng Tôi</h2>
+            <div class="glass-panel contact-grid">
+                <div class="contact-item"><h4>📍 Địa Chỉ</h4><p><a href="https://naver.me/GbDqI9w8">Busan, South Korea</a></p></div>
+                <div class="contact-item"><h4>📞 Số Điện Thoại</h4><p><a href="tel:+8201012345678">+82 010-8432-6135</a></p></div>
+                <div class="contact-item"><h4>📧 Email</h4><p><a href="mailto:contact@lacasilla.com">contact@lacasilla.com</a></p></div>
+                <div class="contact-item"><h4>🌐 Mạng Xã Hội</h4><p> <a href="#">Instagram</a> | <a href="https://www.tiktok.com/@lacasilla2026?is_from_webapp=1&sender_device=pc">TikTok</a></p></div>
+            </div>
+            <div class="copyright">
+                © 2026 Vietnamese Student association at Silla, Design by La Ca Silla Production House. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script điều khiển Menu Mobile -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+        const navLinks = document.querySelectorAll('#nav-list li a');
+
+        mobileMenuBtn.addEventListener('click', () => { 
+            navList.classList.toggle('active'); 
+        });
+
+        // Tự động đóng menu trên điện thoại khi click vào 1 mục bất kỳ
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
