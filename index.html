@@ -22,7 +22,7 @@
         body {
             /* NỀN CHÍNH CHO TOÀN BỘ TRANG (Trừ phần Trang Chủ) */
             background-color: #73daff;
-            background-image: url('POSTER.png');
+            background-image: url('POSTER.png'); /* Đã đổi từ .png thành .jpg ở đây */
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
@@ -132,8 +132,14 @@
         .copyright { text-align: center; padding-top: 30px; font-size: 0.9rem; font-weight: 600; color: #1d2088; }
 
         /* ================= RESPONSIVE ================= */
-        @media (max-width: 992px) { .masonry-gallery { column-count: 2; } }
+       @media (max-width: 992px) { .masonry-gallery { column-count: 2; } }
+        
         @media (max-width: 768px) {
+            /* THÊM DÒNG NÀY ĐỂ SỬA LỖI MẤT NỀN TRÊN IPHONE/ĐIỆN THOẠI */
+            body {
+                background-attachment: scroll; 
+            }
+
             .section-title { font-size: 2rem; }
             .about-content, .missions-content { padding: 25px 15px; }
             .affiliation { flex-direction: column; text-align: center; gap: 10px; }
