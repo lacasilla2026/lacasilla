@@ -40,13 +40,13 @@
         .blob-3 { width: 350px; height: 350px; background: rgba(70, 198, 244, 0.3); top: 40%; left: 30%; animation-duration: 15s; }
         @keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(40px) scale(1.1); } }
 
-        /* Tiện ích Glassmorphism trong suốt */
+        /* Tiện ích Glassmorphism trong suốt (ĐÃ CHỈNH SỬA ĐỂ BỚT TRONG SUỐT, DỄ ĐỌC CHỮ HƠN) */
         .glass-panel {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.132) 0%, rgba(255, 255, 255, 0.05) 100%);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.151);
-            border-top: 1px solid rgba(255, 255, 255, 0.5);
-            border-left: 1px solid rgba(255, 255, 255, 0.5);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.15) 100%);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.6);
+            border-left: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: 24px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
         }
 
@@ -139,7 +139,22 @@
             .affiliation { flex-direction: column; text-align: center; gap: 10px; }
             .assoc-name { text-align: center; }
             .mobile-menu-btn { display: flex; }
-            nav ul { position: absolute; top: 75px; right: 0; width: 100%; background: linear-gradient(135deg, rgba(255, 255, 255, 0.132) 0%, rgba(255, 255, 255, 0.05) 100%); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.151); border-top: 1px solid rgba(255, 255, 255, 0.5); border-left: 1px solid rgba(255, 255, 255, 0.5); border-radius: 15px; flex-direction: column; align-items: center; padding: 20px 0; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; }
+            
+            /* ĐÃ SỬA LỖI MENU ĐIỆN THOẠI ĐÈ NHAU VÀ MÀU NỀN TRẮNG HƠN */
+            nav ul { 
+                position: absolute; 
+                top: 90px; /* Hạ thấp menu xuống để không che logo */
+                right: 0; 
+                width: 100%; 
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.6) 100%); 
+                backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
+                border: 1px solid rgba(255, 255, 255, 0.5); 
+                border-top: 1px solid rgba(255, 255, 255, 0.8); 
+                border-left: 1px solid rgba(255, 255, 255, 0.8); 
+                border-radius: 15px; flex-direction: column; align-items: center; 
+                padding: 20px 0; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
+                opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; 
+            }
             nav ul.active { opacity: 1; visibility: visible; transform: translateY(0); }
         }
         @media (max-width: 576px) { .masonry-gallery { column-count: 1; } }
@@ -159,9 +174,8 @@
                 <img src="LOGO LACA SILLA.png" alt="La Cà Silla Logo">
             </a>
         </div>
-        <div class="mobile-menu-btn" id="mobile-menu">
-            <span></span><span></span><span></span>
-        </div>
+        
+        <!-- Đưa khu vực <nav> này lên TRƯỚC nút bấm 3 gạch -->
         <nav>
             <ul id="nav-list">
                 <li><a href="#about">Về Chúng Tôi</a></li>
@@ -170,6 +184,11 @@
                 <li><a href="#contact">Liên Hệ</a></li>
             </ul>
         </nav>
+
+        <!-- Đưa nút menu điện thoại xuống DƯỚI CÙNG của header -->
+        <div class="mobile-menu-btn" id="mobile-menu">
+            <span></span><span></span><span></span>
+        </div>
     </header>
 
     <!-- TRANG CHỦ (Background Video) -->
@@ -199,7 +218,7 @@
     <!-- THÀNH VIÊN -->
     <section id="members">
         <div class="container">
-            <h2 class="section-title">Thành Viên Nòng Cốt</h2>
+            <h2 class="section-title">Thành Viên</h2>
             
             <!-- Content (4 Người) -->
             <h3 class="sub-category">Content</h3>
@@ -279,7 +298,7 @@
     <!-- NHIỆM VỤ & HÌNH ẢNH HOẠT ĐỘNG -->
     <section id="missions">
         <div class="container">
-            <h2 class="section-title">Nhiệm Vụ Của Chúng Tôi</h2>
+            <h2 class="section-title">Nhiệm Vụ</h2>
             
             <div class="glass-panel missions-content">
                 <div class="mission-item"><span>📰</span><p><strong>Cập nhật tin tức nhanh chóng:</strong> Đưa tin về các hoạt động, sự kiện và thông báo quan trọng từ trường Silla University và Hội sinh viên.</p></div>
@@ -306,7 +325,7 @@
     <!-- LIÊN HỆ -->
     <footer id="contact">
         <div class="container">
-            <h2 class="section-title">Liên Hệ Với Chúng Tôi</h2>
+            <h2 class="section-title">Liên Hệ</h2>
             <div class="glass-panel contact-grid">
                 <div class="contact-item"><h4>📍 Địa Chỉ</h4><p><a href="https://naver.me/GbDqI9w8">Busan, South Korea</a></p></div>
                 <div class="contact-item"><h4>📞 Số Điện Thoại</h4><p><a href="tel:+8201012345678">+82 010-8432-6135</a></p></div>
