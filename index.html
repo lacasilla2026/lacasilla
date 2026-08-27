@@ -22,7 +22,7 @@
         body {
             /* NỀN CHÍNH CHO TOÀN BỘ TRANG (Trừ phần Trang Chủ) */
             background-color: #73daff;
-            background-image: url('POSTER.png'); /* Đã đổi từ .png thành .jpg ở đây */
+            background-image: url('Poster Tot nghiep.png');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
@@ -40,9 +40,9 @@
         .blob-3 { width: 350px; height: 350px; background: rgba(70, 198, 244, 0.3); top: 40%; left: 30%; animation-duration: 15s; }
         @keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(40px) scale(1.1); } }
 
-        /* Tiện ích Glassmorphism trong suốt (ĐÃ CHỈNH SỬA ĐỂ BỚT TRONG SUỐT, DỄ ĐỌC CHỮ HƠN) */
+       /* Tiện ích Glassmorphism trong suốt */
         .glass-panel {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.285) 0%, rgba(255, 255, 255, 0.104) 100%);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.15) 100%);
             backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.3);
             border-top: 1px solid rgba(255, 255, 255, 0.6);
@@ -69,19 +69,18 @@
         #home {
             position: relative;
             width: 100%;
-            height: 100vh; /* Cao bằng 100% màn hình hiển thị */
-            overflow: hidden; /* Ẩn đi những phần video bị lố ra ngoài */
+            height: 100vh;
+            overflow: hidden;
             border-bottom: 2px solid rgba(255,255,255,0.3);
         }
 
-        /* Định dạng cho thẻ video để lấp đầy màn hình */
         .bg-video {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover; /* Tính năng quan trọng: Phóng to video vừa khít mọi tỷ lệ màn hình */
+            object-fit: cover;
             z-index: -1;
         }
 
@@ -89,7 +88,6 @@
         section { padding: 120px 0 60px; scroll-margin-top: 20px; }
         .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 25px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 2px 10px rgba(255,255,255,0.9); }
         
-        /* Tiêu đề phân nhánh */
         .sub-category { text-align: center; font-size: 1.8rem; color: #1d2088; margin: 50px 0 25px; text-transform: uppercase; font-weight: 800; position: relative; }
         .sub-category::after { content: ''; display: block; width: 60px; height: 4px; background: #ffffff; margin: 10px auto 0; border-radius: 2px; box-shadow: 0 1px 3px rgba(0,0,0,0.2); }
 
@@ -113,11 +111,24 @@
         .member-info-hover p { font-size: 0.85rem; margin: 2px 0; }
         .member-role { font-size: 1.3rem; font-weight: bold; color: #1d2088; }
 
-        /* ================= NHIỆM VỤ & HÌNH ẢNH ================= */
+        /* ================= NHIỆM VỤ ================= */
         .missions-content { padding: 40px; display: flex; flex-direction: column; gap: 20px; }
         .mission-item { background: rgba(255,255,255,0.15); backdrop-filter: blur(5px); border: 1px solid rgba(255, 255, 255, 0.3); padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 15px; font-weight: 500; }
         .mission-item span { font-size: 1.5rem; color: #1d2088; }
 
+        /* ================= TIP SINH TỒN (CÁC Ô CLICK ĐƯỢC) ================= */
+        .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 20px; }
+        .tip-card { 
+            display: flex; flex-direction: column; align-items: center; text-align: center; 
+            padding: 30px 20px; text-decoration: none; color: #1d2088; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;
+        }
+        .tip-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
+        .tip-icon { font-size: 3rem; margin-bottom: 15px; }
+        .tip-card h4 { font-size: 1.3rem; margin-bottom: 10px; font-weight: 800; }
+        .tip-card p { font-size: 0.95rem; font-weight: 500; }
+
+        /* ================= HÌNH ẢNH HOẠT ĐỘNG ================= */
         .masonry-gallery { column-count: 3; column-gap: 20px; margin-top: 20px; }
         .masonry-item { break-inside: avoid; margin-bottom: 20px; border-radius: 15px; overflow: hidden; background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); padding: 8px; border: 1px solid rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.5); border-left: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
         .masonry-item:hover { transform: scale(1.02); box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.15); }
@@ -131,39 +142,45 @@
         .contact-item a:hover { color: #ffffff; text-shadow: 0 0 5px rgba(29,32,136, 0.5); }
         .copyright { text-align: center; padding-top: 30px; font-size: 0.9rem; font-weight: 600; color: #1d2088; }
 
-        /* ================= RESPONSIVE ================= */
-       @media (max-width: 992px) { .masonry-gallery { column-count: 2; } }
+        /* ================= RESPONSIVE ĐIỆN THOẠI ================= */
+        @media (max-width: 992px) { .masonry-gallery { column-count: 2; } }
         
         @media (max-width: 768px) {
-            /* THÊM DÒNG NÀY ĐỂ SỬA LỖI MẤT NỀN TRÊN IPHONE/ĐIỆN THOẠI */
-            body {
-                background-attachment: scroll; 
-            }
-
+            body { background-attachment: scroll; }
             .section-title { font-size: 2rem; }
             .about-content, .missions-content { padding: 25px 15px; }
             .affiliation { flex-direction: column; text-align: center; gap: 10px; }
             .assoc-name { text-align: center; }
             .mobile-menu-btn { display: flex; }
             
-            /* ĐÃ SỬA LỖI MENU ĐIỆN THOẠI ĐÈ NHAU VÀ MÀU NỀN TRẮNG HƠN */
             nav ul { 
-                position: absolute; 
-                top: 90px; /* Hạ thấp menu xuống để không che logo */
-                right: 0; 
-                width: 100%; 
+                position: absolute; top: 90px; right: 0; width: 100%; 
                 background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.6) 100%); 
                 backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px); 
-                border: 1px solid rgba(255, 255, 255, 0.5); 
-                border-top: 1px solid rgba(255, 255, 255, 0.8); 
-                border-left: 1px solid rgba(255, 255, 255, 0.8); 
+                border: 1px solid rgba(255, 255, 255, 0.5); border-top: 1px solid rgba(255, 255, 255, 0.8); border-left: 1px solid rgba(255, 255, 255, 0.8); 
                 border-radius: 15px; flex-direction: column; align-items: center; 
                 padding: 20px 0; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
                 opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all 0.3s ease; 
             }
             nav ul.active { opacity: 1; visibility: visible; transform: translateY(0); }
+
+            /* ---> ÉP 2 CỘT THÀNH VIÊN TRÊN ĐIỆN THOẠI <--- */
+            .members-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            .member-card { padding: 15px 5px; }
+            .member-img-wrapper { width: 100px; height: 100px; border-width: 3px; }
+            .member-role { font-size: 0.95rem; }
+            .member-info-hover h4 { font-size: 0.9rem; }
+            .member-info-hover p { font-size: 0.75rem; }
         }
-        @media (max-width: 576px) { .masonry-gallery { column-count: 1; } }
+
+        @media (max-width: 576px) { 
+            /* ---> ÉP 2 CỘT HÌNH ẢNH HOẠT ĐỘNG TRÊN ĐIỆN THOẠI <--- */
+            .masonry-gallery { column-count: 2; column-gap: 10px; } 
+            .masonry-item { margin-bottom: 10px; padding: 4px; }
+        }
     </style>
 </head>
 <body>
@@ -181,17 +198,17 @@
             </a>
         </div>
         
-        <!-- Đưa khu vực <nav> này lên TRƯỚC nút bấm 3 gạch -->
         <nav>
             <ul id="nav-list">
                 <li><a href="#about">Về Chúng Tôi</a></li>
                 <li><a href="#members">Thành Viên</a></li>
                 <li><a href="#missions">Nhiệm Vụ</a></li>
+                <li><a href="#tips">Tip Sinh Tồn</a></li>
+                <li><a href="#gallery">Hình Ảnh</a></li> 
                 <li><a href="#contact">Liên Hệ</a></li>
             </ul>
         </nav>
 
-        <!-- Đưa nút menu điện thoại xuống DƯỚI CÙNG của header -->
         <div class="mobile-menu-btn" id="mobile-menu">
             <span></span><span></span><span></span>
         </div>
@@ -199,9 +216,8 @@
 
     <!-- TRANG CHỦ (Background Video) -->
     <div id="home">
-        <!-- Thay ten-video-cua-ban.mp4 bằng file video thực tế của bạn -->
         <video class="bg-video" autoplay loop muted playsinline>
-            <source src="0826(4).mp4" type="video/mp4">
+            <source src="videobackgrounds.mp4" type="video/mp4">
         </video>
     </div>
 
@@ -226,7 +242,7 @@
         <div class="container">
             <h2 class="section-title">Thành Viên</h2>
             
-            <!-- Content (4 Người) -->
+            <!-- Content -->
             <h3 class="sub-category">Content</h3>
             <div class="members-grid">
                 <div class="member-card glass-panel">
@@ -259,7 +275,7 @@
                 </div>
             </div>
 
-            <!-- Media (4 Người) -->
+            <!-- Media -->
             <h3 class="sub-category">Media</h3>
             <div class="members-grid">
                 <div class="member-card glass-panel">
@@ -272,7 +288,7 @@
                 </div>
             </div>
 
-            <!-- Graphic Design (1 Người) -->
+            <!-- Graphic Design -->
             <h3 class="sub-category">Graphic Design</h3>
             <div class="members-grid">
                 <div class="member-card glass-panel">
@@ -285,7 +301,7 @@
                 </div>
             </div>
 
-            <!-- VJ (1 Người) -->
+            <!-- VJ -->
             <h3 class="sub-category">VJ</h3>
             <div class="members-grid">
                 <div class="member-card glass-panel">
@@ -297,24 +313,59 @@
                     <div class="member-role">Host / VJ</div>
                 </div>
             </div>
-
         </div>
     </section>
 
-    <!-- NHIỆM VỤ & HÌNH ẢNH HOẠT ĐỘNG -->
+    <!-- NHIỆM VỤ -->
     <section id="missions">
         <div class="container">
             <h2 class="section-title">Nhiệm Vụ</h2>
-            
             <div class="glass-panel missions-content">
                 <div class="mission-item"><span>📰</span><p><strong>Cập nhật tin tức nhanh chóng:</strong> Đưa tin về các hoạt động, sự kiện và thông báo quan trọng từ trường Silla University và Hội sinh viên.</p></div>
                 <div class="mission-item"><span>📸</span><p><strong>Truyền thông Hình ảnh & Media:</strong> Quay dựng video, ghi lại những thước phim và hình ảnh lưu giữ thanh xuân của du học sinh.</p></div>
                 <div class="mission-item"><span>🎨</span><p><strong>Thiết kế ấn phẩm sáng tạo:</strong> Phụ trách toàn bộ hình ảnh, poster, banner phong cách chuyên nghiệp cho các chiến dịch và sự kiện.</p></div>
                 <div class="mission-item"><span>🎙️</span><p><strong>Sáng tạo nội dung (Content & VJ):</strong> Xây dựng kịch bản, dẫn chương trình, phỏng vấn và tạo ra các nội dung giải trí, tương tác sinh động.</p></div>
             </div>
+        </div>
+    </section>
 
-            <h3 class="sub-category">Hình Ảnh Hoạt Động</h3>
+    <!-- TIP SINH TỒN -->
+    <section id="tips">
+        <div class="container">
+            <h2 class="section-title">Tip Sinh Tồn</h2>
             
+            <div class="tips-grid">
+                <a href="https://www.tiktok.com/@lacasilla2026/photo/7671994330751520017" target="_blank" class="tip-card glass-panel">
+                    <div class="tip-icon">💡</div>
+                    <h4>Tài khoản HIKOREA</h4>
+                    <p>Hướng Dẫn Đăng Ký tài khoản HiKorea siêu nhanh.</p>
+                </a>
+                
+                <a href="https://www.tiktok.com/@lacasilla2026/photo/7671995529743600912" target="_blank" class="tip-card glass-panel">
+                    <div class="tip-icon">🏡</div>
+                    <h4>KHAI BÁO ĐỊA CHỈ NHÀ</h4>
+                    <p>Khai báo online khi đổi địa chỉ nhà tại Hàn Quốc.</p>
+                </a>
+                
+                <a href="https://www.tiktok.com/@lacasilla2026/photo/7676484429597953288" target="_blank" class="tip-card glass-panel">
+                    <div class="tip-icon">🔳</div>
+                    <h4>ĐĂNG KÝ LÀM THÊM ONLINE</h4>
+                    <p>Đăng ký làm thêm online tại Hàn Quốc siêu dễ</p>
+                </a>
+                
+                <a href="https://www.tiktok.com/@lacasilla2026/photo/7671107218493787399" target="_blank" class="tip-card glass-panel">
+                    <div class="tip-icon">🏥</div>
+                    <h4>TRẢ GÓP TIỀN HỌC</h4>
+                    <p>Hướng Dẫn Đăng Ký trả góp tiền học cho sinh viên Đại Học/Cao Học - Đại học Silla.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- HÌNH ẢNH HOẠT ĐỘNG -->
+    <section id="gallery">
+        <div class="container">
+            <h2 class="section-title">Hình Ảnh Hoạt Động</h2>
             <div class="masonry-gallery">
                 <div class="masonry-item"><img src="MG_3436.JPG" alt="Hoạt động 1"></div>
                 <div class="masonry-item"><img src="MG_3590.JPG" alt="Hoạt động 2"></div>
@@ -333,10 +384,10 @@
         <div class="container">
             <h2 class="section-title">Liên Hệ</h2>
             <div class="glass-panel contact-grid">
-                <div class="contact-item"><h4>📍 Địa Chỉ</h4><p><a href="https://naver.me/GbDqI9w8">Busan, South Korea</a></p></div>
+                <div class="contact-item"><h4>📍 Địa Chỉ</h4><p><a href="https://naver.me/GbDqI9w8" target="_blank">Busan, South Korea</a></p></div>
                 <div class="contact-item"><h4>📞 Số Điện Thoại</h4><p><a href="tel:+8201012345678">+82 010-8432-6135</a></p></div>
                 <div class="contact-item"><h4>📧 Email</h4><p><a href="mailto:contact@lacasilla.com">contact@lacasilla.com</a></p></div>
-                <div class="contact-item"><h4>🌐 Mạng Xã Hội</h4><p> <a href="#">Instagram</a> | <a href="https://www.tiktok.com/@lacasilla2026?is_from_webapp=1&sender_device=pc">TikTok</a></p></div>
+                <div class="contact-item"><h4>🌐 Mạng Xã Hội</h4><p> <a href="#">Instagram</a> | <a href="https://www.tiktok.com/@lacasilla2026?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a></p></div>
             </div>
             <div class="copyright">
                 © 2026 Vietnamese Student association at Silla, Design by La Ca Silla Production House. All Rights Reserved.
