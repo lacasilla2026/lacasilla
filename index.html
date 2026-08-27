@@ -29,70 +29,74 @@
         }
 
         /* Khi di chuột vào link vẫn giữ trạng thái ẩn mũi tên */
-        a, button, .mobile-menu-btn, .tip-card {
+        a, button, .mobile-menu-btn, .tip-card, img {
             cursor: none !important;
         }
 
-        /* ================= HIỆU ỨNG CON TRỎ BONG BÓNG MỚI (TO & TRONG SUỐT HƠN) ================= */
+        /* ================= HIỆU ỨNG CON TRỎ BONG BÓNG TRONG SUỐT (ĐÃ LÀM RÕ HƠN) ================= */
         .cursor-bubble {
             position: fixed;
             top: 0;
             left: 0;
-            width: 70px; /* Tăng kích thước mặc định */
+            width: 70px;
             height: 70px;
-            border-radius: 50%;
-            pointer-events: none; /* Rất quan trọng: Xuyên qua bong bóng để click được các thành phần bên dưới */
-            z-index: 99999; /* Luôn nổi trên cùng */
-            transform: translate(-50%, -50%); /* Căn giữa bong bóng vào tâm chuột */
+            border-radius: 30%;
+            pointer-events: none; 
+            z-index: 99999; 
+            transform: translate(-50%, -50%); 
             
-            /* Tái tạo màu sắc bong bóng xà phòng: Bỏ màu nền mờ, tăng độ sáng viền */
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 50%);
+            /* THÊM: Nền trắng cực nhạt để dễ nhìn thấy xác bong bóng hơn */
+            background: rgba(255, 255, 255, 0.082);
+            /* THÊM: Viền trắng mỏng 1px giúp định hình vòng tròn rõ ràng mà không bị thô cứng */
+            border: 1px solid rgba(255, 255, 255, 0.244);
+            
+            /* TĂNG ĐẬM: Tăng độ hiển thị của màu sắc cầu vồng */
             box-shadow: 
-                inset 0 0 10px rgba(255, 255, 255, 0.3), /* Viền trong mờ */
-                inset 15px 0 20px rgba(255, 105, 180, 0.4), /* Hắt hồng */
-                inset -15px 0 20px rgba(0, 255, 255, 0.4), /* Hắt xanh dương */
-                inset 0 -15px 20px rgba(255, 255, 0, 0.4), /* Hắt vàng */
-                0 0 20px rgba(255, 255, 255, 0.5); /* Hào quang mỏng bên ngoài */
-            border: 1.5px solid rgba(255, 255, 255, 0.8); /* Viền mỏng, sáng rõ nét hơn */
+                inset 10px 0 20px rgba(255, 105, 180, 0.6),  /* Viền hồng */
+                inset -10px 0 20px rgba(0, 255, 255, 0.6), /* Viền xanh lam */
+                inset 0 -10px 20px rgba(255, 255, 0, 0.6),  /* Viền vàng */
+                inset 0 10px 20px rgba(255, 255, 255, 0.563), /* Viền trắng trên */
+                0 0 15px rgba(255, 255, 255, 0.3);          /* Hào quang ngoài */
             
-            /* Hiệu ứng phập phồng (méo mó nhẹ) liên tục */
-            animation: wobbleBubble 4s infinite ease-in-out alternate; /* Chậm lại chút cho tự nhiên */
+            /* TĂNG MẠNH: Làm nhòe và tăng độ sáng nền phía sau bong bóng (hiệu ứng thấu kính) */
+            backdrop-filter: blur(1px) brightness(1.15); 
+            -webkit-backdrop-filter: blur(1px) brightness(1.15); 
+
+            /* Tốc độ phập phồng (Wobble) */
+            animation: wobbleBubble 5s infinite ease-in-out alternate; 
             
-            /* Chuyển động mượt mà khi đổi trạng thái kích thước */
-            transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
-                        height 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            transition: width 0.5s ease, height 0.5s ease;
         }
 
-        /* Hiệu ứng phập phồng (Wobble) cho bong bóng */
+        /* Vòng xoay uốn lượn hình học giữ nguyên biên độ tròn */
         @keyframes wobbleBubble {
-            0% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; transform: translate(-50%, -50%) rotate(0deg); }
-            25% { border-radius: 55% 45% 50% 50% / 50% 55% 45% 50%; transform: translate(-50%, -50%) rotate(5deg); }
-            50% { border-radius: 50% 50% 45% 55% / 55% 50% 50% 45%; transform: translate(-50%, -50%) rotate(0deg); }
-            75% { border-radius: 45% 55% 50% 50% / 50% 45% 55% 50%; transform: translate(-50%, -50%) rotate(-5deg); }
-            100% { border-radius: 50% 50% 55% 45% / 45% 50% 50% 55%; transform: translate(-50%, -50%) rotate(0deg); }
+            0% { border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%; }
+            34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
+            67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
+            100% { border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%; }
         }
         
-        /* Hiệu ứng bong bóng to ra khi di chuột vào các link/nút */
+        /* Hiệu ứng phình to khi di chuột vào nút/link */
         .cursor-bubble.hovered {
-            width: 110px; /* Phình to hơn nữa */
-            height: 110px;
-            background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 50%);
+            width: 100px; 
+            height: 100px;
+            background: rgba(255, 255, 255, 0.132);
+            border: 1px solid rgba(255, 255, 255, 0.475);
             box-shadow: 
-                inset 0 0 15px rgba(255, 255, 255, 0.4),
-                inset 20px 0 30px rgba(255, 105, 180, 0.6),
-                inset -20px 0 30px rgba(0, 255, 255, 0.6),
-                inset 0 -20px 30px rgba(255, 255, 0, 0.6),
-                0 0 30px rgba(255, 255, 255, 0.8); /* Sáng chói hơn */
-            border: 2px solid rgba(255, 255, 255, 1);
+                inset 15px 0 25px rgba(255, 105, 180, 0.516),
+                inset -15px 0 25px rgba(0, 255, 255, 0.647),
+                inset 0 -15px 25px rgba(255, 255, 0, 0.645),
+                inset 0 15px 25px rgba(255, 255, 255, 0.441),
+                0 0 20px rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(0px) brightness(1.2); 
+            -webkit-backdrop-filter: blur(0px) brightness(1.2); 
         }
 
-        /* Ẩn bong bóng trên thiết bị di động (màn hình cảm ứng) và khôi phục mũi tên mặc định */
+        /* Ẩn bong bóng trên thiết bị di động */
         @media (max-width: 768px) {
             * { cursor: auto !important; }
             .cursor-bubble { display: none !important; }
         }
-
-
         /* ================= CÁCH TRỊ LỖI MẤT NỀN TRÊN IPHONE ================= */
         body::before {
             content: "";
@@ -203,7 +207,7 @@
         .tip-card { 
             display: flex; flex-direction: column; align-items: center; text-align: center; 
             padding: 30px 20px; text-decoration: none; color: #1d2088; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;
         }
         .tip-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
         .tip-icon { font-size: 3rem; margin-bottom: 15px; }
@@ -270,7 +274,7 @@
 </head>
 <body>
 
-    <!-- THÊM: Phần tử bong bóng theo chuột -->
+    <!-- Phần tử bong bóng theo chuột -->
     <div class="cursor-bubble" id="cursor-bubble"></div>
 
     <!-- Các khối mờ nền -->
@@ -499,13 +503,35 @@
         // ================= JAVASCRIPT CHO HIỆU ỨNG BONG BÓNG =================
         const cursorBubble = document.getElementById('cursor-bubble');
         
-        // Cập nhật vị trí bong bóng theo tọa độ chuột
+        let mouseX = 0;
+        let mouseY = 0;
+        let bubbleX = 0;
+        let bubbleY = 0;
+
+        // Bắt tọa độ chuột gốc
         document.addEventListener('mousemove', (e) => {
-            cursorBubble.style.left = e.clientX + 'px';
-            cursorBubble.style.top = e.clientY + 'px';
+            mouseX = e.clientX;
+            mouseY = e.clientY;
         });
 
-        // Hiệu ứng phình to bong bóng khi di chuột vào liên kết hoặc nút
+        // Hàm cập nhật vị trí có độ trễ mượt
+        function updateBubble() {
+            let dx = mouseX - bubbleX;
+            let dy = mouseY - bubbleY;
+            
+            bubbleX += dx * 0.15;
+            bubbleY += dy * 0.15;
+            
+            // Xóa phần bóp méo hình chữ nhật, chỉ dùng transform translate để di chuyển
+            cursorBubble.style.transform = `translate(-50%, -50%)`;
+            cursorBubble.style.left = bubbleX + 'px';
+            cursorBubble.style.top = bubbleY + 'px';
+
+            requestAnimationFrame(updateBubble);
+        }
+        updateBubble();
+
+        // Hiệu ứng phình to khi di chuột vào liên kết hoặc nút
         const clickableElements = document.querySelectorAll('a, button, .mobile-menu-btn, .tip-card, img');
         clickableElements.forEach((el) => {
             el.addEventListener('mouseenter', () => {
