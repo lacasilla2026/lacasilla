@@ -80,21 +80,17 @@
         .blob-3 { width: 350px; height: 350px; background: rgba(70, 198, 244, 0.3); top: 40%; left: 30%; animation-duration: 15s; }
         @keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(40px) scale(1.1); } }
 
-        /* ================= HIỆU ỨNG GLASS CHUNG (ĐÃ CHỈNH CHO TRONG HƠN & BỚT MỜ) ================= */
+        /* ================= HIỆU ỨNG GLASS CHUNG ================= */
         .glass-panel {
-            /* Giảm độ đục của nền trắng */
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 100%);
-            /* Giảm blur từ 30px xuống 12px để nhìn rõ phía sau hơn */
             backdrop-filter: blur(12px) saturate(180%); -webkit-backdrop-filter: blur(12px) saturate(180%);
             border: 1px solid rgba(255, 255, 255, 0.2); border-top: 1px solid rgba(255, 255, 255, 0.5); border-left: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 24px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
             transition: all 0.3s ease;
         }
 
-        /* Lớp hiệu ứng dùng chung cho thẻ phát sáng (Thành viên, Tip, Hover ảnh) */
         .hover-glow:hover {
             transform: translateY(-10px); 
-            /* Khi hover cũng trong hơn so với lúc trước */
             background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
             box-shadow: 0 15px 40px 0 rgba(255, 255, 255, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.4);
             border-color: rgba(255, 255, 255, 0.7);
@@ -128,8 +124,19 @@
         .about-content h3 { font-size: 1.8rem; margin-bottom: 15px; color: #1d2088; }
         .affiliation { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 40px; padding-top: 25px; border-top: 1px dashed rgba(29, 32, 136, 0.3); }
         .affiliation p { font-size: 1.1rem; font-weight: 600; color: #1d2088; margin-bottom: 0; }
+        
+        /* Chỉnh CSS cho logo bấm được */
+        #open-video-btn {
+            background: none;
+            border: none;
+            padding: 0;
+            outline: none;
+            transition: transform 0.2s ease;
+        }
+        #open-video-btn:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
         .affiliation img { height: 60px; object-fit: contain; }
-        .assoc-name { font-weight: 800; font-size: 1.1rem; color: #1d2088; text-align: left; line-height: 1.3; }
 
         /* ================= THÀNH VIÊN ================= */
         .members-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 40px; }
@@ -149,13 +156,10 @@
         
         .member-role { font-size: 1.25rem; font-weight: 900; color: #1d2088; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Cụm Thông tin cá nhân */
         .member-details {
             background: rgba(255, 255, 255, 0.15); 
             padding: 10px 15px; border-radius: 12px; width: 100%;
-            /* Nét liền mỏng, trong suốt */
             border: 1px solid rgba(255, 255, 255, 0.4);
-            /* Inner Glow: đổ bóng vào trong tạo độ chìm */
             box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4);
         }
         .member-details h4 { font-size: 1.15rem; color: #1d2088; margin-bottom: 5px; font-weight: 800; }
@@ -174,28 +178,18 @@
         .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 20px; }
         .tip-card { 
             display: flex; flex-direction: column; align-items: center; text-align: center; padding: 30px 20px; text-decoration: none; color: #1d2088; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .tip-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
         .tip-icon { font-size: 3rem; margin-bottom: 15px; }
         .tip-card h4 { font-size: 1.3rem; margin-bottom: 10px; font-weight: 800; }
         .tip-card p { font-size: 0.95rem; font-weight: 500; }
 
-        /* ================= HÌNH ẢNH HOẠT ĐỘNG (ĐÃ CHỈNH CHO TRONG HƠN) ================= */
+        /* ================= HÌNH ẢNH HOẠT ĐỘNG ================= */
         .masonry-gallery { column-count: 3; column-gap: 20px; margin-top: 20px; }
         .masonry-item { 
             break-inside: avoid; margin-bottom: 20px; border-radius: 15px; overflow: hidden; 
             background: rgba(255, 255, 255, 0.1); 
-            backdrop-filter: blur(8px) saturate(150%);
-            -webkit-backdrop-filter: blur(8px) saturate(150%); 
+            backdrop-filter: blur(8px) saturate(150%); -webkit-backdrop-filter: blur(8px) saturate(150%); 
             padding: 8px; border: 1px solid rgba(255, 255, 255, 0.2); border-top: 1px solid rgba(255, 255, 255, 0.5); border-left: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; 
-        }
-        /* Áp dụng hover phát sáng (scale lên nhẹ hơn so với card) */
-        .masonry-item:hover { 
-            transform: scale(1.02); 
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%);
-            box-shadow: 0 15px 40px 0 rgba(255, 255, 255, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.4);
-            border-color: rgba(255, 255, 255, 0.7);
         }
         .masonry-item img { width: 100%; display: block; border-radius: 10px; }
 
@@ -214,7 +208,6 @@
             .section-title { font-size: 2rem; }
             .about-content, .missions-content { padding: 25px 15px; }
             .affiliation { flex-direction: column; text-align: center; gap: 10px; }
-            .assoc-name { text-align: center; }
             .mobile-menu-btn { display: flex; }
             
             nav ul { 
@@ -240,9 +233,70 @@
             .masonry-gallery { column-count: 2; column-gap: 10px; } 
             .masonry-item { margin-bottom: 10px; padding: 4px; }
         }
+
+        /* ================= VIDEO MODAL (POPUP TOÀN MÀN HÌNH CHUẨN) ================= */
+        .video-modal {
+            display: none; 
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh; /* Bung tràn 100% màn hình */
+            background-color: #000; /* Nền đen tuyền */
+            z-index: 100000; 
+            align-items: center; justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .video-modal.show {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-video-container {
+            position: relative;
+            width: 100%; 
+            height: 100%; /* Lấp kín chiều cao */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-video-container video {
+            width: 100%; height: 100%; 
+            object-fit: contain; /* Tự động phóng to video vừa khít màn hình mà không bị cắt xén */
+        }
+        
+        /* Nút tắt Video được đưa vào góc phải màn hình */
+        .close-modal-btn {
+            position: absolute;
+            top: 30px; right: 40px;
+            color: #fff; font-size: 35px; font-weight: bold;
+            background: rgba(255,255,255,0.2); 
+            width: 50px; height: 50px; 
+            border-radius: 50%;
+            border: none; cursor: pointer; z-index: 10;
+            display: flex; align-items: center; justify-content: center;
+            backdrop-filter: blur(5px);
+            transition: background 0.3s, transform 0.2s;
+        }
+        .close-modal-btn:hover { 
+            background: #ff4d4d; 
+            transform: scale(1.1);
+        }
+        
+        /* Tắt bong bóng khi hiện modal */
+        body.modal-open .cursor-bubble { display: none !important; }
+        body.modal-open { overflow: hidden; }
     </style>
 </head>
 <body>
+
+    <!-- THÊM: HỘP CHỨA VIDEO TOÀN MÀN HÌNH (SẼ BỊ ẨN MẶC ĐỊNH) -->
+    <div class="video-modal" id="videoModal">
+        <div class="modal-video-container">
+            <button class="close-modal-btn" id="closeModalBtn">&times;</button>
+            <!-- SỬA TÊN FILE VIDEO MÀ BẠN MUỐN PHÁT Ở ĐÂY -->
+            <video id="popupVideo" controls playsinline>
+                <source src="ASMOTIONVIDEO.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
 
     <!-- Phần tử bong bóng theo chuột -->
     <div class="cursor-bubble" id="cursor-bubble"></div>
@@ -280,13 +334,16 @@
                 <p><strong>La Cà Silla Production House</strong> là đội ngũ truyền thông sáng tạo trực thuộc <strong>Ban Chi Hội Sinh Viên Việt Nam tại trường Đại Học Silla, Hàn Quốc</strong>. Với sức trẻ, sự năng động và góc nhìn hiện đại, chúng tôi ra đời nhằm mang đến những ấn phẩm truyền thông chất lượng, kết nối cộng đồng du học sinh và lưu giữ những khoảnh khắc đẹp nhất dưới mái trường Silla.</p>
                 <div class="affiliation">
                     <p>Thành viên trực thuộc:</p>
-                    <img src="ASLOGO_1.png" alt="Logo Ban Chi Hội">
+                    <!-- SỬA: Đưa ảnh logo vào trong thẻ Button để bắt sự kiện click -->
+                    <button id="open-video-btn">
+                        <img src="ASLOGO_1.png" alt="Logo Ban Chi Hội">
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- THÀNH VIÊN ĐÃ CẬP NHẬT CẤU TRÚC HTML -->
+    <!-- THÀNH VIÊN -->
     <section id="members">
         <div class="container">
             <h2 class="section-title">Thành Viên</h2>
@@ -482,14 +539,14 @@
         <div class="container">
             <h2 class="section-title">Hình Ảnh Hoạt Động</h2>
             <div class="masonry-gallery">
-                <div class="masonry-item"><img src="MG_3436.JPG" alt="Hoạt động 1"></div>
-                <div class="masonry-item"><img src="MG_3590.JPG" alt="Hoạt động 2"></div>
-                <div class="masonry-item"><img src="MG_3472.JPG" alt="Hoạt động 3"></div>
-                <div class="masonry-item"><img src="DEMOlacateam.png" alt="Hoạt động 4"></div>
-                <div class="masonry-item"><img src="IMG_3406.JPG" alt="Hoạt động 5"></div>
-                <div class="masonry-item"><img src="MG_3585.JPG" alt="Hoạt động 6"></div>
-                <div class="masonry-item"><img src="MG_3383.JPG" alt="Hoạt động 7"></div>
-                <div class="masonry-item"><img src="2026+totnghiep[.png" alt="Hoạt động 8"></div>
+                <div class="masonry-item hover-glow"><img src="MG_3436.JPG" alt="Hoạt động 1"></div>
+                <div class="masonry-item hover-glow"><img src="MG_3590.JPG" alt="Hoạt động 2"></div>
+                <div class="masonry-item hover-glow"><img src="MG_3472.JPG" alt="Hoạt động 3"></div>
+                <div class="masonry-item hover-glow"><img src="DEMOlacateam.png" alt="Hoạt động 4"></div>
+                <div class="masonry-item hover-glow"><img src="IMG_3406.JPG" alt="Hoạt động 5"></div>
+                <div class="masonry-item hover-glow"><img src="MG_3585.JPG" alt="Hoạt động 6"></div>
+                <div class="masonry-item hover-glow"><img src="MG_3383.JPG" alt="Hoạt động 7"></div>
+                <div class="masonry-item hover-glow"><img src="2026+totnghiep[.png" alt="Hoạt động 8"></div>
             </div>
         </div>
     </section>
@@ -510,7 +567,7 @@
         </div>
     </footer>
 
-    <!-- Script điều khiển Menu Mobile & Bong Bóng -->
+    <!-- Script điều khiển Menu Mobile, Bong Bóng & Video -->
     <script>
         const mobileMenuBtn = document.getElementById('mobile-menu');
         const navList = document.getElementById('nav-list');
@@ -542,6 +599,43 @@
             el.addEventListener('mouseenter', () => { cursorBubble.classList.add('hovered'); });
             el.addEventListener('mouseleave', () => { cursorBubble.classList.remove('hovered'); });
         });
+
+        // ================= JAVASCRIPT CHO LOGO MỞ VIDEO =================
+        const openVideoBtn = document.getElementById('open-video-btn');
+        const videoModal = document.getElementById('videoModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const popupVideo = document.getElementById('popupVideo');
+        
+        let scrollPosition = 0; // Biến lưu tọa độ cuộn
+
+        // Mở Modal Video
+        openVideoBtn.addEventListener('click', () => {
+            scrollPosition = window.pageYOffset; // Ghi nhớ vị trí đang cuộn
+            videoModal.classList.add('show');
+            document.body.classList.add('modal-open'); // Khóa thanh cuộn trang chính
+            popupVideo.play(); // Bắt đầu phát video
+        });
+
+        // Đóng Modal Video
+        function closeVideo() {
+            videoModal.classList.remove('show');
+            document.body.classList.remove('modal-open');
+            popupVideo.pause(); 
+            popupVideo.currentTime = 0; // Trả video về giây đầu tiên
+            window.scrollTo(0, scrollPosition); // Trả trang web về vị trí cũ
+        }
+
+        // Đóng khi bấm nút X
+        closeModalBtn.addEventListener('click', closeVideo);
+
+        // Đóng khi bấm ra ngoài khoảng đen
+        videoModal.addEventListener('click', (e) => {
+            if(e.target === videoModal) { closeVideo(); }
+        });
+
+        // Đóng tự động khi video phát xong
+        popupVideo.addEventListener('ended', closeVideo);
+
     </script>
 </body>
 </html>
