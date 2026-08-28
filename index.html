@@ -12,14 +12,10 @@
             padding: 0;
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            /* ẨN CON TRỎ MŨI TÊN MẶC ĐỊNH TRÊN TOÀN BỘ TRANG */
             cursor: none !important; 
         }
 
-        /* Bật tính năng cuộn mượt mà khi click vào menu */
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
             color: #00046c;
@@ -28,117 +24,87 @@
             overflow-x: hidden;
         }
 
-        /* Khi di chuột vào link vẫn giữ trạng thái ẩn mũi tên */
-        a, button, .mobile-menu-btn, .tip-card, img {
-            cursor: none !important;
-        }
+        a, button, .mobile-menu-btn, .tip-card, img { cursor: none !important; }
 
-        /* ================= HIỆU ỨNG CON TRỎ BONG BÓNG TRONG SUỐT (ĐÃ LÀM RÕ HƠN) ================= */
+        /* ================= HIỆU ỨNG CON TRỎ BONG BÓNG ================= */
         .cursor-bubble {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 70px;
-            height: 70px;
-            border-radius: 30%;
-            pointer-events: none; 
-            z-index: 99999; 
+            top: 0; left: 0; width: 70px; height: 70px;
+            pointer-events: none; z-index: 99999; 
             transform: translate(-50%, -50%); 
-            
-            /* THÊM: Nền trắng cực nhạt để dễ nhìn thấy xác bong bóng hơn */
             background: rgba(255, 255, 255, 0.082);
-            /* THÊM: Viền trắng mỏng 1px giúp định hình vòng tròn rõ ràng mà không bị thô cứng */
             border: 1px solid rgba(255, 255, 255, 0.244);
-            
-            /* TĂNG ĐẬM: Tăng độ hiển thị của màu sắc cầu vồng */
             box-shadow: 
-                inset 10px 0 20px rgba(255, 105, 180, 0.6),  /* Viền hồng */
-                inset -10px 0 20px rgba(0, 255, 255, 0.6), /* Viền xanh lam */
-                inset 0 -10px 20px rgba(255, 255, 0, 0.6),  /* Viền vàng */
-                inset 0 10px 20px rgba(255, 255, 255, 0.563), /* Viền trắng trên */
-                0 0 15px rgba(255, 255, 255, 0.3);          /* Hào quang ngoài */
-            
-            /* TĂNG MẠNH: Làm nhòe và tăng độ sáng nền phía sau bong bóng (hiệu ứng thấu kính) */
+                inset 10px 0 20px rgba(255, 105, 180, 0.6), 
+                inset -10px 0 20px rgba(0, 255, 255, 0.6), 
+                inset 0 -10px 20px rgba(255, 255, 0, 0.6), 
+                inset 0 10px 20px rgba(255, 255, 255, 0.563), 
+                0 0 15px rgba(255, 255, 255, 0.3);          
             backdrop-filter: blur(1px) brightness(1.15); 
             -webkit-backdrop-filter: blur(1px) brightness(1.15); 
-
-            /* Tốc độ phập phồng (Wobble) */
             animation: wobbleBubble 5s infinite ease-in-out alternate; 
-            
-            transition: width 0.5s ease, height 0.5s ease;
+            transition: width 0.6s cubic-bezier(0.25, 1, 0.5, 1), height 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        /* Vòng xoay uốn lượn hình học giữ nguyên biên độ tròn */
         @keyframes wobbleBubble {
-            0% { border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%; }
-            34% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; }
-            67% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; }
-            100% { border-radius: 40% 60% 70% 30% / 40% 40% 60% 50%; }
+            0%   { border-radius: 45% 55% 45% 55% / 55% 45% 55% 45%; }
+            25%  { border-radius: 55% 45% 55% 45% / 45% 55% 45% 55%; transform: translate(-50%, -50%) rotate(45deg); }
+            50%  { border-radius: 50% 50% 40% 60% / 60% 40% 50% 50%; transform: translate(-50%, -50%) rotate(90deg); }
+            75%  { border-radius: 60% 40% 50% 50% / 50% 50% 40% 60%; transform: translate(-50%, -50%) rotate(135deg); }
+            100% { border-radius: 45% 55% 45% 55% / 55% 45% 55% 45%; transform: translate(-50%, -50%) rotate(180deg); }
         }
         
-        /* Hiệu ứng phình to khi di chuột vào nút/link */
         .cursor-bubble.hovered {
-            width: 100px; 
-            height: 100px;
-            background: rgba(255, 255, 255, 0.132);
-            border: 1px solid rgba(255, 255, 255, 0.475);
+            width: 100px; height: 100px;
+            background: rgba(255, 255, 255, 0.132); border: 1px solid rgba(255, 255, 255, 0.475);
             box-shadow: 
-                inset 15px 0 25px rgba(255, 105, 180, 0.516),
-                inset -15px 0 25px rgba(0, 255, 255, 0.647),
-                inset 0 -15px 25px rgba(255, 255, 0, 0.645),
-                inset 0 15px 25px rgba(255, 255, 255, 0.441),
+                inset 15px 0 25px rgba(255, 105, 180, 0.516), inset -15px 0 25px rgba(0, 255, 255, 0.647),
+                inset 0 -15px 25px rgba(255, 255, 0, 0.645), inset 0 15px 25px rgba(255, 255, 255, 0.441),
                 0 0 20px rgba(255, 255, 255, 0.5);
-            backdrop-filter: blur(0px) brightness(1.2); 
-            -webkit-backdrop-filter: blur(0px) brightness(1.2); 
+            backdrop-filter: blur(0px) brightness(1.2); -webkit-backdrop-filter: blur(0px) brightness(1.2); 
+            animation: wobbleBubble 4s infinite ease-in-out alternate;
         }
 
-        /* Ẩn bong bóng trên thiết bị di động */
-        @media (max-width: 768px) {
-            * { cursor: auto !important; }
-            .cursor-bubble { display: none !important; }
-        }
-        /* ================= CÁCH TRỊ LỖI MẤT NỀN TRÊN IPHONE ================= */
+        @media (max-width: 768px) { * { cursor: auto !important; } .cursor-bubble { display: none !important; } }
+
+        /* ================= NỀN CHÍNH & BLOB MỜ ================= */
         body::before {
-            content: "";
-            position: fixed; 
-            top: 0; 
-            left: 0;
-            width: 100vw; 
-            height: 100vh; 
-            background-color: #73daff;
-            background-image: url('Poster Tot nghiep.png'); 
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-            z-index: -999; 
+            content: ""; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+            background-color: #73daff; background-image: url('Poster Tot nghiep.png'); 
+            background-size: cover; background-repeat: no-repeat; background-position: center center; z-index: -999; 
         }
 
-        /* Khối sáng mờ tạo hiệu ứng kính chất lỏng */
         .blob { position: fixed; filter: blur(80px); z-index: -1; border-radius: 50%; animation: float 10s infinite ease-in-out alternate; }
         .blob-1 { width: 400px; height: 400px; background: rgba(28, 255, 176, 0.347); top: -100px; left: -100px; }
         .blob-2 { width: 500px; height: 500px; background: rgba(29, 33, 136, 0.345); bottom: -50px; right: -100px; animation-delay: -5s; }
         .blob-3 { width: 350px; height: 350px; background: rgba(70, 198, 244, 0.3); top: 40%; left: 30%; animation-duration: 15s; }
         @keyframes float { 0% { transform: translateY(0) scale(1); } 100% { transform: translateY(40px) scale(1.1); } }
 
-        /* ================= BÍ QUYẾT LIQUID GLASS CHUẨN APPLE ================= */
+        /* ================= HIỆU ỨNG GLASS CHUNG (ĐÃ CHỈNH CHO TRONG HƠN & BỚT MỜ) ================= */
         .glass-panel {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%);
-            backdrop-filter: blur(30px) saturate(180%); 
-            -webkit-backdrop-filter: blur(30px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-top: 1px solid rgba(255, 255, 255, 0.6);
-            border-left: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 24px; 
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+            /* Giảm độ đục của nền trắng */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.02) 100%);
+            /* Giảm blur từ 30px xuống 12px để nhìn rõ phía sau hơn */
+            backdrop-filter: blur(12px) saturate(180%); -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2); border-top: 1px solid rgba(255, 255, 255, 0.5); border-left: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 24px; box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        /* Lớp hiệu ứng dùng chung cho thẻ phát sáng (Thành viên, Tip, Hover ảnh) */
+        .hover-glow:hover {
+            transform: translateY(-10px); 
+            /* Khi hover cũng trong hơn so với lúc trước */
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.1) 100%);
+            box-shadow: 0 15px 40px 0 rgba(255, 255, 255, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.7);
         }
 
         .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
         /* ================= HEADER ================= */
         header {
-            position: fixed; top: 15px; left: 20px; right: 20px; margin: 0 auto;
-            max-width: 1160px; z-index: 1000; padding: 10px 30px; display: flex;
-            justify-content: space-between; align-items: center;
+            position: fixed; top: 15px; left: 20px; right: 20px; margin: 0 auto; max-width: 1160px; z-index: 1000; padding: 10px 30px; display: flex; justify-content: space-between; align-items: center;
         }
         .logo img { height: 50px; object-fit: contain; }
         nav ul { list-style: none; display: flex; gap: 25px; }
@@ -148,23 +114,8 @@
         .mobile-menu-btn span { display: block; width: 25px; height: 3px; background-color: #1d2088; border-radius: 3px; transition: 0.3s; }
 
         /* ================= TRANG CHỦ ================= */
-        #home {
-            position: relative;
-            width: 100%;
-            height: 100vh; 
-            overflow: hidden; 
-            border-bottom: 2px solid rgba(255,255,255,0.3);
-            background-color: #000; 
-        }
-        .bg-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover; 
-            z-index: 1; 
-        }
+        #home { position: relative; width: 100%; height: 100vh; overflow: hidden; border-bottom: 2px solid rgba(255,255,255,0.3); background-color: #000; }
+        .bg-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1; }
 
         /* CÁC SECTION CHUNG */
         section { padding: 120px 0 60px; scroll-margin-top: 20px; }
@@ -182,22 +133,39 @@
 
         /* ================= THÀNH VIÊN ================= */
         .members-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 40px; }
-        .member-card { padding: 25px; text-align: center; transition: transform 0.3s ease; }
-        .member-card:hover { transform: translateY(-10px); }
-        .member-img-wrapper { position: relative; width: 150px; height: 150px; margin: 0 auto 20px; border-radius: 50%; overflow: hidden; border: 4px solid rgba(255, 255, 255, 0.5); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        
+        .member-card { 
+            padding: 25px 15px; 
+            text-align: center; 
+            display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+        }
+
+        .member-img-wrapper { 
+            width: 150px; height: 150px; margin: 0 auto 15px; border-radius: 50%; 
+            overflow: hidden; border: 4px solid rgba(255, 255, 255, 0.8); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
+        }
         .member-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-        .member-info-hover { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(29, 32, 136, 0.75); backdrop-filter: blur(8px); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; padding: 10px; }
-        .member-img-wrapper:hover .member-info-hover { opacity: 1; }
-        .member-info-hover h4 { font-size: 1.1rem; margin-bottom: 5px; }
-        .member-info-hover p { font-size: 0.85rem; margin: 2px 0; }
-        .member-role { font-size: 1.3rem; font-weight: bold; color: #1d2088; }
+        
+        .member-role { font-size: 1.25rem; font-weight: 900; color: #1d2088; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Cụm Thông tin cá nhân */
+        .member-details {
+            background: rgba(255, 255, 255, 0.15); 
+            padding: 10px 15px; border-radius: 12px; width: 100%;
+            /* Nét liền mỏng, trong suốt */
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            /* Inner Glow: đổ bóng vào trong tạo độ chìm */
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4);
+        }
+        .member-details h4 { font-size: 1.15rem; color: #1d2088; margin-bottom: 5px; font-weight: 800; }
+        .member-details p { font-size: 0.9rem; color: #00046c; margin: 2px 0; font-weight: 500; }
+
 
         /* ================= NHIỆM VỤ ================= */
         .missions-content { padding: 40px; display: flex; flex-direction: column; gap: 20px; }
         .mission-item { 
-            background: rgba(255,255,255,0.15); 
-            backdrop-filter: blur(15px) saturate(150%); 
-            -webkit-backdrop-filter: blur(15px) saturate(150%);
+            background: rgba(255,255,255,0.1); backdrop-filter: blur(10px) saturate(150%); -webkit-backdrop-filter: blur(10px) saturate(150%);
             border: 1px solid rgba(255, 255, 255, 0.3); padding: 20px; border-radius: 15px; display: flex; align-items: center; gap: 15px; font-weight: 500; 
         }
         .mission-item span { font-size: 1.5rem; color: #1d2088; }
@@ -205,25 +173,30 @@
         /* ================= TIP SINH TỒN ================= */
         .tips-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 20px; }
         .tip-card { 
-            display: flex; flex-direction: column; align-items: center; text-align: center; 
-            padding: 30px 20px; text-decoration: none; color: #1d2088; 
-            transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer;
+            display: flex; flex-direction: column; align-items: center; text-align: center; padding: 30px 20px; text-decoration: none; color: #1d2088; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .tip-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.2); }
         .tip-icon { font-size: 3rem; margin-bottom: 15px; }
         .tip-card h4 { font-size: 1.3rem; margin-bottom: 10px; font-weight: 800; }
         .tip-card p { font-size: 0.95rem; font-weight: 500; }
 
-        /* ================= HÌNH ẢNH HOẠT ĐỘNG ================= */
+        /* ================= HÌNH ẢNH HOẠT ĐỘNG (ĐÃ CHỈNH CHO TRONG HƠN) ================= */
         .masonry-gallery { column-count: 3; column-gap: 20px; margin-top: 20px; }
         .masonry-item { 
             break-inside: avoid; margin-bottom: 20px; border-radius: 15px; overflow: hidden; 
-            background: rgba(255, 255, 255, 0.15); 
-            backdrop-filter: blur(15px) saturate(150%);
-            -webkit-backdrop-filter: blur(15px) saturate(150%); 
-            padding: 8px; border: 1px solid rgba(255, 255, 255, 0.3); border-top: 1px solid rgba(255, 255, 255, 0.6); border-left: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(8px) saturate(150%);
+            -webkit-backdrop-filter: blur(8px) saturate(150%); 
+            padding: 8px; border: 1px solid rgba(255, 255, 255, 0.2); border-top: 1px solid rgba(255, 255, 255, 0.5); border-left: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; 
         }
-        .masonry-item:hover { transform: scale(1.02); box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.15); }
+        /* Áp dụng hover phát sáng (scale lên nhẹ hơn so với card) */
+        .masonry-item:hover { 
+            transform: scale(1.02); 
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 100%);
+            box-shadow: 0 15px 40px 0 rgba(255, 255, 255, 0.3), inset 0 0 15px rgba(255, 255, 255, 0.4);
+            border-color: rgba(255, 255, 255, 0.7);
+        }
         .masonry-item img { width: 100%; display: block; border-radius: 10px; }
 
         /* ================= LIÊN HỆ ================= */
@@ -234,7 +207,7 @@
         .contact-item a:hover { color: #ffffff; text-shadow: 0 0 5px rgba(29,32,136, 0.5); }
         .copyright { text-align: center; padding-top: 30px; font-size: 0.9rem; font-weight: 600; color: #1d2088; }
 
-        /* ================= RESPONSIVE ĐIỆN THOẠI ================= */
+        /* ================= RESPONSIVE ================= */
         @media (max-width: 992px) { .masonry-gallery { column-count: 2; } }
         
         @media (max-width: 768px) {
@@ -247,8 +220,7 @@
             nav ul { 
                 position: absolute; top: 90px; right: 0; width: 100%; 
                 background: linear-gradient(135deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.3) 100%); 
-                backdrop-filter: blur(30px) saturate(180%); 
-                -webkit-backdrop-filter: blur(30px) saturate(180%); 
+                backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); 
                 border: 1px solid rgba(255, 255, 255, 0.4); border-top: 1px solid rgba(255, 255, 255, 0.8); border-left: 1px solid rgba(255, 255, 255, 0.8); 
                 border-radius: 15px; flex-direction: column; align-items: center; 
                 padding: 20px 0; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); 
@@ -256,15 +228,13 @@
             }
             nav ul.active { opacity: 1; visibility: visible; transform: translateY(0); }
 
-            .members-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 15px;
-            }
-            .member-card { padding: 15px 5px; }
-            .member-img-wrapper { width: 100px; height: 100px; border-width: 3px; }
-            .member-role { font-size: 0.95rem; }
-            .member-info-hover h4 { font-size: 0.9rem; }
-            .member-info-hover p { font-size: 0.75rem; }
+            .members-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .member-img-wrapper { width: 100px; height: 100px; border-width: 3px; margin-bottom: 10px;}
+            .member-role { font-size: 1rem; margin-bottom: 10px;}
+            
+            .member-details { padding: 8px 5px;}
+            .member-details h4 { font-size: 0.95rem; }
+            .member-details p { font-size: 0.8rem; }
         }
         @media (max-width: 576px) { 
             .masonry-gallery { column-count: 2; column-gap: 10px; } 
@@ -277,19 +247,14 @@
     <!-- Phần tử bong bóng theo chuột -->
     <div class="cursor-bubble" id="cursor-bubble"></div>
 
-    <!-- Các khối mờ nền -->
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
 
-    <!-- Thanh Menu Header Cố Định -->
     <header class="glass-panel">
         <div class="logo">
-            <a href="#home">
-                <img src="LOGO LACA SILLA.png" alt="La Cà Silla Logo">
-            </a>
+            <a href="#home"><img src="LOGO LACA SILLA.png" alt="La Cà Silla Logo"></a>
         </div>
-        
         <nav>
             <ul id="nav-list">
                 <li><a href="#about">Về Chúng Tôi</a></li>
@@ -300,27 +265,19 @@
                 <li><a href="#contact">Liên Hệ</a></li>
             </ul>
         </nav>
-
-        <div class="mobile-menu-btn" id="mobile-menu">
-            <span></span><span></span><span></span>
-        </div>
+        <div class="mobile-menu-btn" id="mobile-menu"><span></span><span></span><span></span></div>
     </header>
 
-    <!-- TRANG CHỦ -->
     <div id="home">
-        <video class="bg-video" autoplay loop muted playsinline>
-            <source src="videobackgrounds.mp4" type="video/mp4">
-        </video>
+        <video class="bg-video" autoplay loop muted playsinline><source src="videobackgrounds.mp4" type="video/mp4"></video>
     </div>
 
-    <!-- VỀ CHÚNG TÔI -->
     <section id="about">
         <div class="container">
             <h2 class="section-title">Về Chúng Tôi</h2>
             <div class="glass-panel about-content">
                 <h3>Thành lập năm 2026</h3>
                 <p><strong>La Cà Silla Production House</strong> là đội ngũ truyền thông sáng tạo trực thuộc <strong>Ban Chi Hội Sinh Viên Việt Nam tại trường Đại Học Silla, Hàn Quốc</strong>. Với sức trẻ, sự năng động và góc nhìn hiện đại, chúng tôi ra đời nhằm mang đến những ấn phẩm truyền thông chất lượng, kết nối cộng đồng du học sinh và lưu giữ những khoảnh khắc đẹp nhất dưới mái trường Silla.</p>
-                
                 <div class="affiliation">
                     <p>Thành viên trực thuộc:</p>
                     <img src="ASLOGO_1.png" alt="Logo Ban Chi Hội">
@@ -329,79 +286,152 @@
         </div>
     </section>
 
-    <!-- THÀNH VIÊN -->
+    <!-- THÀNH VIÊN ĐÃ CẬP NHẬT CẤU TRÚC HTML -->
     <section id="members">
         <div class="container">
             <h2 class="section-title">Thành Viên</h2>
             
             <h3 class="sub-category">Content</h3>
             <div class="members-grid">
-                <div class="member-card glass-panel">
-                    <div class="member-img-wrapper"><img src="HAI.jpg" alt="Member"><div class="member-info-hover"><h4>THANH HẢI</h4><p>Năm sinh: 2000</p></div></div>
+                
+                <div class="member-card glass-panel hover-glow">
+                    <div class="member-img-wrapper"><img src="HAI.jpg" alt="Thanh Hải"></div>
                     <div class="member-role">Content Writer</div>
+                    <div class="member-details">
+                        <h4>THANH HẢI</h4>
+                        <p>Năm sinh: 2000</p>
+                    </div>
                 </div>
-                <div class="member-card glass-panel">
-                    <div class="member-img-wrapper"><img src="NGAN.jpg" alt="Member"><div class="member-info-hover"><h4>KIM NGÂN</h4><p>Nghệ danh: YUJIN</p><p>Năm sinh: 2005</p></div></div>
+
+                <div class="member-card glass-panel hover-glow">
+                    <div class="member-img-wrapper"><img src="NGAN.jpg" alt="Kim Ngân"></div>
                     <div class="member-role">Content Writer</div>
+                    <div class="member-details">
+                        <h4>KIM NGÂN</h4>
+                        <p>Nghệ danh: YUJIN</p>
+                        <p>Năm sinh: 2005</p>
+                    </div>
                 </div>
-                <div class="member-card glass-panel">
-                    <div class="member-img-wrapper"><img src="TOAN.jpg" alt="Member"><div class="member-info-hover"><h4>XUÂN TOÀN</h4><p>Nghệ danh: JACKY</p><p>Năm sinh: 2002</p></div></div>
+
+                <div class="member-card glass-panel hover-glow">
+                    <div class="member-img-wrapper"><img src="TOAN.jpg" alt="Xuân Toàn"></div>
                     <div class="member-role">Content Writer</div>
+                    <div class="member-details">
+                        <h4>XUÂN TOÀN</h4>
+                        <p>Nghệ danh: JACKY</p>
+                        <p>Năm sinh: 2002</p>
+                    </div>
                 </div>
-                <div class="member-card glass-panel">
-                    <div class="member-img-wrapper"><img src="LINH.jpg" alt="Member"><div class="member-info-hover"><h4>THÙY LINH</h4><p>Năm sinh: 2005</p></div></div>
+
+                <div class="member-card glass-panel hover-glow">
+                    <div class="member-img-wrapper"><img src="LINH.jpg" alt="Thùy Linh"></div>
                     <div class="member-role">Content Writer</div>
+                    <div class="member-details">
+                        <h4>THÙY LINH</h4>
+                        <p>Năm sinh: 2005</p>
+                    </div>
                 </div>
-                <div class="member-card glass-panel">
-                    <div class="member-img-wrapper"><img src="LOGO LACA SILLA.png" alt="Member"><div class="member-info-hover"><h4>HUỲNH NGỌC</h4><p>Năm sinh: 2005</p></div></div>
+
+                <div class="member-card glass-panel hover-glow">
+                    <div class="member-img-wrapper"><img src="LOGO LACA SILLA.png" alt="Huỳnh Ngọc"></div>
                     <div class="member-role">Content Writer</div>
+                    <div class="member-details">
+                        <h4>HUỲNH NGỌC</h4>
+                        <p>Năm sinh: 2005</p>
+                    </div>
                 </div>
-                <div class="member-card glass-panel">
-                    <div class="member-img-wrapper"><img src="LOGO LACA SILLA.png" alt="Member"><div class="member-info-hover"><h4>DIỄM KIỀU</h4><p>Năm sinh: 2005</p></div></div>
+
+                <div class="member-card glass-panel hover-glow">
+                    <div class="member-img-wrapper"><img src="LOGO LACA SILLA.png" alt="Diễm Kiều"></div>
                     <div class="member-role">Content Writer</div>
+                    <div class="member-details">
+                        <h4>DIỄM KIỀU</h4>
+                        <p>Năm sinh: 2005</p>
+                    </div>
                 </div>
-                <div class="member-card glass-panel">
-                    <div class="member-img-wrapper"><img src="LOGO LACA SILLA.png" alt="Member"><div class="member-info-hover"><h4>KIM XUYẾN</h4><p>Năm sinh: 2003</p></div></div>
+
+                <div class="member-card glass-panel hover-glow">
+                    <div class="member-img-wrapper"><img src="LOGO LACA SILLA.png" alt="Kim Xuyến"></div>
                     <div class="member-role">Content Writer</div>
+                    <div class="member-details">
+                        <h4>KIM XUYẾN</h4>
+                        <p>Năm sinh: 2003</p>
+                    </div>
                 </div>
+
             </div>
 
             <h3 class="sub-category">Media</h3>
             <div class="members-grid">
-                <div class="member-card glass-panel">
-                    <div class="member-img-wrapper"><img src="TOAN.jpg" alt="Member"><div class="member-info-hover"><h4>XUÂN TOÀN</h4><p>Nghệ danh: JACKY</p><p>Năm sinh: 2002</p></div></div>
+                
+                <div class="member-card glass-panel hover-glow">
+                    <div class="member-img-wrapper"><img src="TOAN.jpg" alt="Xuân Toàn"></div>
                     <div class="member-role">Cameraman | Editor</div>
+                    <div class="member-details">
+                        <h4>XUÂN TOÀN</h4>
+                        <p>Nghệ danh: JACKY</p>
+                        <p>Năm sinh: 2002</p>
+                    </div>
                 </div>
-                <div class="member-card glass-panel">
-                    <div class="member-img-wrapper"><img src="TRANG.jpg" alt="Member"><div class="member-info-hover"><h4>HUYỀN TRANG</h4><p>Năm sinh: 2004</p></div></div>
+
+                <div class="member-card glass-panel hover-glow">
+                    <div class="member-img-wrapper"><img src="TRANG.jpg" alt="Huyền Trang"></div>
                     <div class="member-role">Video Editor</div>
+                    <div class="member-details">
+                        <h4>HUYỀN TRANG</h4>
+                        <p>Năm sinh: 2004</p>
+                    </div>
                 </div>
+
             </div>
 
             <h3 class="sub-category">Graphic Design</h3>
             <div class="members-grid">
-                <div class="member-card glass-panel">
-                    <div class="member-img-wrapper"><img src="TOAN.jpg" alt="Member"><div class="member-info-hover"><h4>XUÂN TOÀN</h4><p>Nghệ danh: JACKY</p><p>Năm sinh: 2002</p></div></div>
+                
+                <div class="member-card glass-panel hover-glow">
+                    <div class="member-img-wrapper"><img src="TOAN.jpg" alt="Xuân Toàn"></div>
                     <div class="member-role">Designer</div>
+                    <div class="member-details">
+                        <h4>XUÂN TOÀN</h4>
+                        <p>Nghệ danh: JACKY</p>
+                        <p>Năm sinh: 2002</p>
+                    </div>
                 </div>
-                <div class="member-card glass-panel">
-                    <div class="member-img-wrapper"><img src="NGAN.jpg" alt="Member"><div class="member-info-hover"><h4>KIM NGÂN</h4><p>Nghệ danh: YUJIN</p><p>Năm sinh: 2005</p></div></div>
+
+                <div class="member-card glass-panel hover-glow">
+                    <div class="member-img-wrapper"><img src="NGAN.jpg" alt="Kim Ngân"></div>
                     <div class="member-role">Designer</div>
+                    <div class="member-details">
+                        <h4>KIM NGÂN</h4>
+                        <p>Nghệ danh: YUJIN</p>
+                        <p>Năm sinh: 2005</p>
+                    </div>
                 </div>
+
             </div>
 
             <h3 class="sub-category">VJ</h3>
             <div class="members-grid">
-                <div class="member-card glass-panel">
-                    <div class="member-img-wrapper"><img src="TRANG.jpg" alt="Member"><div class="member-info-hover"><h4>HUYỀN TRANG</h4><p>Năm sinh: 2004</p></div></div>
+                
+                <div class="member-card glass-panel hover-glow">
+                    <div class="member-img-wrapper"><img src="TRANG.jpg" alt="Huyền Trang"></div>
                     <div class="member-role">Host / VJ</div>
+                    <div class="member-details">
+                        <h4>HUYỀN TRANG</h4>
+                        <p>Năm sinh: 2004</p>
+                    </div>
                 </div>
-                <div class="member-card glass-panel">
-                    <div class="member-img-wrapper"><img src="HAI.jpg" alt="Member"><div class="member-info-hover"><h4>THANH HẢI</h4><p>Năm sinh: 2000</p></div></div>
-                    <div class="member-role">Host / VJ</div>
-                </div>
-            </div>
 
+                <div class="member-card glass-panel hover-glow">
+                    <div class="member-img-wrapper"><img src="HAI.jpg" alt="Thanh Hải"></div>
+                    <div class="member-role">Host / VJ</div>
+                    <div class="member-details">
+                        <h4>THANH HẢI</h4>
+                        <p>Năm sinh: 2000</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </section>
 
@@ -422,27 +452,23 @@
     <section id="tips">
         <div class="container">
             <h2 class="section-title">Tip Sinh Tồn</h2>
-            
             <div class="tips-grid">
-                <a href="https://www.tiktok.com/@lacasilla2026/photo/7671994330751520017" target="_blank" class="tip-card glass-panel">
+                <a href="https://www.tiktok.com/@lacasilla2026/photo/7671994330751520017" target="_blank" class="tip-card glass-panel hover-glow">
                     <div class="tip-icon">💡</div>
                     <h4>Tài khoản HIKOREA</h4>
                     <p>Hướng Dẫn Đăng Ký tài khoản HiKorea siêu nhanh.</p>
                 </a>
-                
-                <a href="https://www.tiktok.com/@lacasilla2026/photo/7671995529743600912" target="_blank" class="tip-card glass-panel">
+                <a href="https://www.tiktok.com/@lacasilla2026/photo/7671995529743600912" target="_blank" class="tip-card glass-panel hover-glow">
                     <div class="tip-icon">🏡</div>
                     <h4>KHAI BÁO ĐỊA CHỈ NHÀ</h4>
                     <p>Khai báo online khi đổi địa chỉ nhà tại Hàn Quốc.</p>
                 </a>
-                
-                <a href="https://www.tiktok.com/@lacasilla2026/photo/7676484429597953288" target="_blank" class="tip-card glass-panel">
+                <a href="https://www.tiktok.com/@lacasilla2026/photo/7676484429597953288" target="_blank" class="tip-card glass-panel hover-glow">
                     <div class="tip-icon">🔳</div>
                     <h4>ĐĂNG KÝ LÀM THÊM ONLINE</h4>
                     <p>Đăng ký làm thêm online tại Hàn Quốc siêu dễ</p>
                 </a>
-                
-                <a href="https://www.tiktok.com/@lacasilla2026/photo/7671107218493787399" target="_blank" class="tip-card glass-panel">
+                <a href="https://www.tiktok.com/@lacasilla2026/photo/7671107218493787399" target="_blank" class="tip-card glass-panel hover-glow">
                     <div class="tip-icon">💵</div>
                     <h4>TRẢ GÓP TIỀN HỌC</h4>
                     <p>Hướng Dẫn Đăng Ký trả góp tiền học cho sinh viên Đại Học/Cao Học - Đại học Silla.</p>
@@ -490,56 +516,31 @@
         const navList = document.getElementById('nav-list');
         const navLinks = document.querySelectorAll('#nav-list li a');
 
-        mobileMenuBtn.addEventListener('click', () => { 
-            navList.classList.toggle('active'); 
-        });
+        mobileMenuBtn.addEventListener('click', () => { navList.classList.toggle('active'); });
+        navLinks.forEach(link => { link.addEventListener('click', () => { navList.classList.remove('active'); }); });
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navList.classList.remove('active');
-            });
-        });
-
-        // ================= JAVASCRIPT CHO HIỆU ỨNG BONG BÓNG =================
+        // JAVASCRIPT CHO HIỆU ỨNG BONG BÓNG
         const cursorBubble = document.getElementById('cursor-bubble');
-        
-        let mouseX = 0;
-        let mouseY = 0;
-        let bubbleX = 0;
-        let bubbleY = 0;
+        let mouseX = 0, mouseY = 0, bubbleX = 0, bubbleY = 0;
 
-        // Bắt tọa độ chuột gốc
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
+        document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
 
-        // Hàm cập nhật vị trí có độ trễ mượt
         function updateBubble() {
             let dx = mouseX - bubbleX;
             let dy = mouseY - bubbleY;
+            bubbleX += dx * 0.15; bubbleY += dy * 0.15;
             
-            bubbleX += dx * 0.15;
-            bubbleY += dy * 0.15;
-            
-            // Xóa phần bóp méo hình chữ nhật, chỉ dùng transform translate để di chuyển
             cursorBubble.style.transform = `translate(-50%, -50%)`;
             cursorBubble.style.left = bubbleX + 'px';
             cursorBubble.style.top = bubbleY + 'px';
-
             requestAnimationFrame(updateBubble);
         }
         updateBubble();
 
-        // Hiệu ứng phình to khi di chuột vào liên kết hoặc nút
         const clickableElements = document.querySelectorAll('a, button, .mobile-menu-btn, .tip-card, img');
         clickableElements.forEach((el) => {
-            el.addEventListener('mouseenter', () => {
-                cursorBubble.classList.add('hovered');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorBubble.classList.remove('hovered');
-            });
+            el.addEventListener('mouseenter', () => { cursorBubble.classList.add('hovered'); });
+            el.addEventListener('mouseleave', () => { cursorBubble.classList.remove('hovered'); });
         });
     </script>
 </body>
